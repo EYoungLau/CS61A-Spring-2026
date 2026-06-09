@@ -53,6 +53,10 @@ def digit_distance(num):
     True
     """
     "*** YOUR CODE HERE ***"
+    if num < 10:
+        return 0
+    else:
+        return abs((num % 10) - ((num // 10) % 10)) + digit_distance(num // 10)
 
 
 def interleaved_sum(num, f_odd, f_even):
@@ -77,6 +81,11 @@ def interleaved_sum(num, f_odd, f_even):
     True
     """
     "*** YOUR CODE HERE ***"
+    def helper(i, current_f, next_f):
+        if i == num:
+            return current_f(i)
+        return current_f(i) + helper(i + 1, next_f, current_f)
+    return helper(1, f_odd, f_even)
 
 
 def next_smaller_dollar(bill):
@@ -113,6 +122,7 @@ def count_dollars(sum_needed):
     True
     """
     "*** YOUR CODE HERE ***"
+    
 
 
 def next_larger_dollar(bill):
