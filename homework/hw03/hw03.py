@@ -122,6 +122,17 @@ def count_dollars(sum_needed):
     True
     """
     "*** YOUR CODE HERE ***"
+    def constrained_count(sum_needed, largest_bill):
+        if sum_needed == 0:
+            return 1
+        if sum_needed < 0:
+            return 0
+        if largest_bill == None:
+            return 0
+        without_dollar_bill = constrained_count(sum_needed, next_smaller_dollar(largest_bill))
+        with_dollar_bill = constrained_count(sum_needed - largest_bill, largest_bill)
+        return without_dollar_bill + with_dollar_bill
+    return constrained_count(sum_needed, 100)
     
 
 
