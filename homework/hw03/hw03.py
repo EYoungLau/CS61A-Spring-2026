@@ -170,6 +170,17 @@ def count_dollars_upward(sum_needed):
     True
     """
     "*** YOUR CODE HERE ***"
+    def constrained_count(sum_needed, smallest_bill):
+        if sum_needed == 0:
+            return 1
+        if sum_needed < 0:
+            return 0
+        if smallest_bill == None:
+            return 0
+        without_dollar_bill = constrained_count(sum_needed, next_larger_dollar(smallest_bill))
+        with_dollar_bill = constrained_count(sum_needed - smallest_bill, smallest_bill)
+        return without_dollar_bill + with_dollar_bill
+    return constrained_count(sum_needed, 1)
 
 
 def print_move(origin, destination):
