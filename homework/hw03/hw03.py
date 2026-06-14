@@ -216,6 +216,14 @@ def move_stack(num, start, end):
     """
     assert 1 <= start <= 3 and 1 <= end <= 3 and start != end, "Bad start/end"
     "*** YOUR CODE HERE ***"
+    if num == 1:
+        print_move(start,end)
+    else:
+        spare = 6 - start - end
+        move_stack(num - 1, start, spare)
+        print_move(start, end)
+        move_stack(num - 1, spare, end)
+
 
 
 from operator import sub, mul
@@ -231,5 +239,5 @@ def make_anonymous_factorial():
     ...     ['Assign', 'AnnAssign', 'AugAssign', 'NamedExpr', 'FunctionDef', 'Recursion'])
     True
     """
-    return 'YOUR_EXPRESSION_HERE'
+    return (lambda f: f(f))(lambda f: lambda x: 1 if x == 0 else x * f(f)(x - 1))
 
